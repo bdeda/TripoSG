@@ -193,10 +193,9 @@ def hierarchical_extract_geometry(geometric_func: Callable,
         vertices, faces, normals, _ = measure.marching_cubes(grid_logits.float().cpu().numpy(), 0, method="lewiner")
         vertices = vertices / (2**hierarchical_octree_depth) * bbox_size.cpu().numpy() + bbox_min.cpu().numpy()
         mesh_v_f = (vertices.astype(np.float32), np.ascontiguousarray(faces))
-    except Exception as e:
-        print(e)
+    except Exception:
         torch.cuda.empty_cache()
-        mesh_v_f = (None, None)
+        raise
 
     return [mesh_v_f]
 

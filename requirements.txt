@@ -6,7 +6,7 @@ opencv-python
 trimesh
 omegaconf
 scikit-image
-numpy==1.22.3
+numpy>=1.22.3
 peft
 jaxtyping
 typeguard
